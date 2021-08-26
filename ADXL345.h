@@ -203,6 +203,7 @@ public:
     void setInterrupt(interrupt_t interrupt, bool state);
     void setInterruptMap(interrupt_t interrupt, interruptPin_t pin);
     uint8_t getInterruptSources(void);
+    bool isInterruptSource(interrupt_t interrupt, uint8_t sources_bitmap);
 
     void setFreefallInterruptTreshold(uint16_t threshold_mg);
     void setFreefallInterruptTime(uint16_t time_ms);

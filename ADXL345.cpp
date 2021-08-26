@@ -6,11 +6,10 @@
 */
 /**************************************************************************/
 
-#include <cstring>
 #include <cmath>
+#include <cstring>
 
 #include "ADXL345.h"
-
 
 /**************************************************************************/
 /*!
@@ -270,7 +269,8 @@ bool ADXL345::getEvent(sensors_event_t* event)
     @param enable true to enable, false to disable
 */
 /**************************************************************************/
-void ADXL345::setInterrupt(interrupt_t interrupt, bool state) {
+void ADXL345::setInterrupt(interrupt_t interrupt, bool state)
+{
     uint8_t reg = readRegister(ADXL345_REG_INT_ENABLE);
 
     if (state)
@@ -288,7 +288,8 @@ void ADXL345::setInterrupt(interrupt_t interrupt, bool state) {
     @param pin Interrupt pin
 */
 /**************************************************************************/
-void ADXL345::setInterruptMap(interrupt_t interrupt, interruptPin_t pin) {
+void ADXL345::setInterruptMap(interrupt_t interrupt, interruptPin_t pin)
+{
     uint8_t reg = readRegister(ADXL345_REG_INT_MAP);
 
     if (pin == ADXL345_INT2)
@@ -304,8 +305,24 @@ void ADXL345::setInterruptMap(interrupt_t interrupt, interruptPin_t pin) {
     @brief Get interrupt source(s) and clear latched motion detection intrrupts
     @return Bitmap with triggered interrupts set to 1
  */
-uint8_t ADXL345::getInterruptSources() {
+/**************************************************************************/
+
+uint8_t ADXL345::getInterruptSources()
+{
     return readRegister(ADXL345_REG_INT_SOURCE);
+}
+
+/**************************************************************************/
+/*!
+    @brief Is given interrupt a source?
+    @param interrupt Interrupt type
+    @param sources_bitmap Interrupt sources bitmap
+    @return true if interrupt is a source, false otherwise
+ */
+/**************************************************************************/
+bool ADXL345::isInterruptSource(interrupt_t interrupt, uint8_t sources_bitmap)
+{
+    return (sources_bitmap & interrupt) != 0;
 }
 
 /**************************************************************************/
@@ -316,11 +333,12 @@ uint8_t ADXL345::getInterruptSources() {
     @note Threshold is clamped to a maximum of 15937.5 mg
 */
 /**************************************************************************/
-void ADXL345::setFreefallInterruptTreshold(uint16_t threshold_mg) {
+void ADXL345::setFreefallInterruptTreshold(uint16_t threshold_mg)
+{
     if (threshold_mg < 0)
         threshold_mg = 0;
 
-    if (threshold_mg > 15937.5) 
+    if (threshold_mg > 15937.5)
         threshold_mg = 15937.5;
 
     uint8_t threshold = (uint8_t) round(threshold_mg / 62.5);
@@ -335,7 +353,8 @@ void ADXL345::setFreefallInterruptTreshold(uint16_t threshold_mg) {
     @note Duration is clamped to a maximum of 1275ms
 */
 /**************************************************************************/
-void ADXL345::setFreefallInterruptTime(uint16_t time_ms) {
+void ADXL345::setFreefallInterruptTime(uint16_t time_ms)
+{
     if (time_ms > 1275)
         time_ms = 1275;
 
