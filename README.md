@@ -1,12 +1,12 @@
 # ADXL345_RP2040
 A simple C++ library for Raspberry Pi Pico to control the nice ADXL345 accelerometer from Analog Devices.
-Based on https://github.com/adafruit/Adafruit_ADXL345/ with added support for enabling interrupts.
+Based on https://github.com/adafruit/Adafruit_ADXL345 with added support for enabling interrupts.
 Only I²C interface is supported.
 To use motion sensing functions interrupts, you will need to set detection tresholds.
 Helper functions to set tresholds for free fall detection are provided.
 Code is very much work-in-progress, functions for other interrupts are missing.
 
-Official datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ADXL345.pdf/
+Official datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ADXL345.pdf
 
 Example:
 ```c++
