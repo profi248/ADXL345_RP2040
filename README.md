@@ -40,6 +40,7 @@ int main()
 
     while (true) {
         printf("X: %d Y: %d Z: %d\n", 
+            // note: these are raw values, to get real gravitational force, you can use accelerometer.getEvent()
             accelerometer.getX(),
             accelerometer.getY(),
             accelerometer.getZ()
